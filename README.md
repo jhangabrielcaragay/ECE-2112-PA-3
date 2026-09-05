@@ -56,7 +56,7 @@ Calling the ```DataFrame``` will show the following data:
 | Maserati Bora | 15.0 | 8 | 301.0 | 335 | 3.54 | 3.570 | 14.60 | 0 | 1 | 5 | 8 |
 | Volvo 142E | 21.4 | 4 | 121.0 | 109 | 4.11 | 2.780 | 18.60 | 1 | 1 | 4 | 2 |
 
-> Again, This will then be used in the entirety of the programming assignment.
+> Again, this will then be used in the entirety of the programming assignment.
 
 # A. POSITIONAL AND LABEL-BASED SLICING
 
@@ -66,9 +66,57 @@ The first problem requires displaying the **shape** and **complete column names*
 to extract rows 6 through 10 of the dataset. From those selected rows, the required columns **Model, mpg, cyl, hp, and gear** are selected using their
 **column labels**, in the specified order.
 
-
-
 ### **DISCUSSION**
+
+The shape of the ```cars``` **DataFrame** was obtained using the code:
+```python
+cars.shape
+```
+The code outputs:
+```python
+(32, 12)
+```
+> The cars DataFrame contains 32 rows and 12 columns.
+
+We then get the complete list of column names of cars using the code:
+
+```python
+cars.columns
+```
+The code outputs:
+```python
+['Model',
+ 'mpg',
+ 'cyl',
+ 'disp',
+ 'hp',
+ 'drat',
+ 'wt',
+ 'qsec',
+ 'vs',
+ 'am',
+ 'gear',
+ 'carb']
+```
+> This prints out the names of all 12 columns.
+
+Next, using positional slicing, we create ```cars_6_to_10``` containing rows 6 through 10 of the dataset using the code:
+
+```python
+cars_6_to_10 = cars.iloc[5:10] 
+```
+
+The code outputs:
+
+| Model | mpg | cyl | disp | hp | drat | wt | qsec | vs | am | gear | carb |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Valiant | 18.1 | 6 | 225.0 | 105 | 2.76 | 3.46 | 20.22 | 1 | 0 | 3 | 1 |
+| Duster 360 | 14.3 | 8 | 360.0 | 245 | 3.21 | 3.57 | 15.84 | 0 | 0 | 3 | 4 |
+| Merc 240D | 24.4 | 4 | 146.7 | 62 | 3.69 | 3.19 | 20.00 | 1 | 0 | 4 | 2 |
+| Merc 230 | 22.8 | 4 | 140.8 | 95 | 3.92 | 3.15 | 22.90 | 1 | 0 | 4 | 2 |
+| Merc 280 | 19.2 | 6 | 167.6 | 123 | 3.92 | 3.44 | 18.30 | 1 | 0 | 4 | 4 |
+
+> This selects rows at positions **5** through **9**, which correspond to rows **6** through **10** in the dataset as Python indexing starts at ```0```.
 
 ### **OVERALL STRUCTURE**
 
@@ -93,7 +141,7 @@ The complete row for **Toyota Corolla** is stored in ```toyota```, while **Model
 
 ### **OBJECTIVE**
 
-The problem requires creating a new DataFrame named ```selected_cars``` by filtering the Model column for three specific car models: **Datsun 710**, **Lotus Europa**, and **Ferrari Dino**. 
+The third problem requires creating a new DataFrame named ```selected_cars``` by filtering the Model column for three specific car models: **Datsun 710**, **Lotus Europa**, and **Ferrari Dino**. 
 Only the columns **Model**, **mpg**, **cyl**, **hp**, and **gear** are retained. The resulting ```DataFrame``` is displayed along with its shape.
 
 ### **DISCUSSION**
