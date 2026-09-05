@@ -118,8 +118,69 @@ The code outputs:
 
 > This selects rows at positions **5** through **9**, which correspond to rows **6** through **10** in the dataset as Python indexing starts at ```0```.
 
-### **OVERALL STRUCTURE**
+Lastly, we display only the columns: **Model**, **mpg**, **cyl**, **hp**, and **gear** in that order using the code:
+```python
+cars_6_to_10 = cars.loc[[5,6,7,8,9],['Model','mpg','cyl','hp', 'gear']]
+```
+> This selects rows **6–10** using their index labels and keeps only the specified columns using their **column labels**.
 
+The code outputs:
+| Model | mpg | cyl | hp | gear |
+|---|---:|---:|---:|---:|
+| Valiant | 18.1 | 6 | 105 | 3 |
+| Duster 360 | 14.3 | 8 | 245 | 3 |
+| Merc 240D | 24.4 | 4 | 62 | 4 |
+| Merc 230 | 22.8 | 4 | 95 | 4 |
+| Merc 280 | 19.2 | 6 | 123 | 4 |
+
+### **OVERALL STRUCTURE**
+```python
+cars.shape
+
+(32, 12)
+```
+
+```python
+list(cars.columns)
+
+['Model',
+ 'mpg',
+ 'cyl',
+ 'disp',
+ 'hp',
+ 'drat',
+ 'wt',
+ 'qsec',
+ 'vs',
+ 'am',
+ 'gear',
+ 'carb']
+```
+
+```python
+cars_6_to_10 = cars.iloc[5:10]
+cars_6_to_10
+```
+| Model | mpg | cyl | disp | hp | drat | wt | qsec | vs | am | gear | carb |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Valiant | 18.1 | 6 | 225.0 | 105 | 2.76 | 3.46 | 20.22 | 1 | 0 | 3 | 1 |
+| Duster 360 | 14.3 | 8 | 360.0 | 245 | 3.21 | 3.57 | 15.84 | 0 | 0 | 3 | 4 |
+| Merc 240D | 24.4 | 4 | 146.7 | 62 | 3.69 | 3.19 | 20.00 | 1 | 0 | 4 | 2 |
+| Merc 230 | 22.8 | 4 | 140.8 | 95 | 3.92 | 3.15 | 22.90 | 1 | 0 | 4 | 2 |
+| Merc 280 | 19.2 | 6 | 167.6 | 123 | 3.92 | 3.44 | 18.30 | 1 | 0 | 4 | 4 |
+
+
+```python
+cars_6_to_10 = cars.loc[[5,6,7,8,9],['Model','mpg','cyl','hp', 'gear']]
+cars_6_to_10
+```
+| Model | mpg | cyl | hp | gear |
+|---|---:|---:|---:|---:|
+| Valiant | 18.1 | 6 | 105 | 3 |
+| Duster 360 | 14.3 | 8 | 245 | 3 |
+| Merc 240D | 24.4 | 4 | 62 | 4 |
+| Merc 230 | 22.8 | 4 | 95 | 4 |
+| Merc 280 | 19.2 | 6 | 123 | 4 |
 
 
 
