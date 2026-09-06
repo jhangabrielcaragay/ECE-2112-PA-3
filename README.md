@@ -120,7 +120,7 @@ The code outputs:
 
 Lastly, we display only the columns: **Model**, **mpg**, **cyl**, **hp**, and **gear** in that order using the code:
 ```python
-cars_6_to_10 = cars.loc[[5,6,7,8,9],['Model','mpg','cyl','hp', 'gear']]
+cars_6_to_10 = cars_6_to_10[['Model','mpg','cyl','hp', 'gear']]
 ```
 > This selects rows **6–10** using their index labels and keeps only the specified columns using their **column labels**.
 
@@ -171,7 +171,7 @@ cars_6_to_10
 
 
 ```python
-cars_6_to_10 = cars.loc[[5,6,7,8,9],['Model','mpg','cyl','hp', 'gear']]
+cars_6_to_10 = cars_6_to_10[['Model','mpg','cyl','hp', 'gear']]
 cars_6_to_10
 ```
 | Model | mpg | cyl | hp | gear |
@@ -182,21 +182,52 @@ cars_6_to_10
 | Merc 230 | 22.8 | 4 | 95 | 4 |
 | Merc 280 | 19.2 | 6 | 123 | 4 |
 
-
-
 # B. MODEL LOOKUP
 
 ### **OBJECTIVE**
 
 The second problem requires using Boolean indexing on the ```Model``` **column** to locate specific car models without relying on their row numbers.
-The complete row for **Toyota Corolla** is stored in ```toyota```, while **Model**, **mpg**, **hp**, and **wt** for **Pontiac Firebird** are selected and stored in ```pontiac```.
+The complete row for **Toyota Corolla** is stored in ```toyota```, while **Model**, **mpg**, **hp**, and **wt** for **Pontiac Firebird** are selected and stored in ```pontiac Firebird```.
 
 ### **DISCUSSION**
 
+First, we use boolean indexing on the ```Model``` **column** to display the complete row for ```Toyota Corolla``` using the code:
+```python
+toyota = cars.loc[cars['Model']=='Toyota Corolla', ]
+```
+> This uses ```.loc``` to filter the ```Model``` column and select the row where the value is ```Toyota Corolla```.
+
+This outputs:
+| Model | mpg | cyl | disp | hp | drat | wt | qsec | vs | am | gear | carb |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Toyota Corolla | 33.9 | 4 | 71.1 | 65 | 4.22 | 1.835 | 19.9 | 1 | 1 | 4 | 1 |
+> The results are stored in ```Toyota Corolla```.
+
+Next, we are asked to display only the **Model**, **mpg**, **hp**, and **wt** values for the ```Pontiac Firebird``` using the following code:
+```python
+pontiac = cars.loc[cars['Model']=='Pontiac Firebird', ['Model','mpg','hp', 'wt']]
+```
+This outputs:
+| Model | mpg | hp | wt |
+|---|---:|---:|---:|
+| Pontiac Firebird | 19.2 | 175 | 3.845 |
+> The results are stored in ```Pontiac Firebird```.
+
 ### **OVERALL STRUCTURE**
-
-
-
+```python
+toyota = cars.loc[cars['Model']=='Toyota Corolla', ]
+toyota
+```
+| Model | mpg | cyl | disp | hp | drat | wt | qsec | vs | am | gear | carb |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Toyota Corolla | 33.9 | 4 | 71.1 | 65 | 4.22 | 1.835 | 19.9 | 1 | 1 | 4 | 1 |
+```python
+pontiac = cars.loc[cars['Model']=='Pontiac Firebird', ['Model','mpg','hp', 'wt']]
+pontiac
+```
+| Model | mpg | hp | wt |
+|---|---:|---:|---:|
+| Pontiac Firebird | 19.2 | 175 | 3.845 |
 
 # C. MULTI-MODEL SUBSETTING
 
@@ -207,15 +238,62 @@ Only the columns **Model**, **mpg**, **cyl**, **hp**, and **gear** are retained.
 
 ### **DISCUSSION**
 
+First, we create a DataFrame named ```selected_cars``` which contains the reconds for three models: ```Datsun 710```, ```Lotus Europa```, and ```Ferrari Dino``` using the code:
+
+```python
+selected_cars = cars.loc[
+    (cars['Model'] == 'Datsun 710') |
+    (cars['Model'] == 'Lotus Europa') |
+    (cars['Model'] == 'Ferrari Dino'),
+    ['Model', 'mpg', 'cyl', 'hp', 'gear']
+]
+```
+> The ```|``` operator means **or**, which allows the code to select rows where the Model is ```Datsun 710```, ```Lotus Europa```, or ```Ferrari Dino```.
+
+This code outputs:
+| Model | mpg | cyl | hp | gear |
+|---|---:|---:|---:|---:|
+| Datsun 710 | 22.8 | 4 | 93 | 4 |
+| Lotus Europa | 30.4 | 4 | 113 | 5 |
+| Ferrari Dino | 19.7 | 6 | 175 | 5 |
+
+Finally, we display its shape using the code:
+```python
+selected_cars.shape
+```
+Which outputs:
+```python
+(3, 5)
+```
+
+
 ### **OVERALL STRUCTURE**
 
+```python
+selected_cars = cars.loc[
+    (cars['Model'] == 'Datsun 710') |
+    (cars['Model'] == 'Lotus Europa') |
+    (cars['Model'] == 'Ferrari Dino'),
+    ['Model', 'mpg', 'cyl', 'hp', 'gear']
+]
+```
+| Model | mpg | cyl | hp | gear |
+|---|---:|---:|---:|---:|
+| Datsun 710 | 22.8 | 4 | 93 | 4 |
+| Lotus Europa | 30.4 | 4 | 113 | 5 |
+| Ferrari Dino | 19.7 | 6 | 175 | 5 |
 
+```python
+selected_cars.shape
+
+(3, 5)
+```
 
 
 ## **HISTORY**
 
 **September 6, 2026** - Finalized the README.md file.
 
-**September 5, 2026** - Submitted the required .ipynb and .npy files.
+**September 6, 2026** - Submitted the required .ipynb file.
 
 **September 5, 2026** - Started the Readme file.
